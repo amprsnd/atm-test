@@ -73,21 +73,21 @@ export default {
   methods: {
     setButtonValue (val) {
       val = val.toString()
+      let sum = this.sum
       if (val === 'X') {
-        this.sum = '0'
+        sum = '0'
       } else if (val === '<') {
-        this.sum = this.sum.length > 1
-          ? this.sum.slice(0, -1)
+        sum = sum.length > 1
+          ? sum.slice(0, -1)
           : '0'
       } else {
-        this.sum = this.sum === '0' ? val : this.sum + val
+        sum = this.sum === '0' ? val : sum + val
       }
-      this.$emit('change', this.sum)
+      this.$emit('change', sum)
     },
     cashOut () {
       this.$emit('cash-out')
-      this.sum = '0'
-      this.$emit('change', this.sum)
+      this.$emit('change', '0')
     }
   }
 }

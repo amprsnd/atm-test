@@ -3,7 +3,7 @@
     <the-header :total="total" />
     <div class="container-fluid flex-grow-1">
       <div class="row">
-        <div class="col">
+        <div class="col-3">
           <div class="sticky-top">
             <div class="p-2">
               <label for="sum">Сумма для снятия:</label>
@@ -22,6 +22,7 @@
               v-model="sum"
               @cash-out="cashOut()"
             />
+            <the-cash-info :cash="cash" />
           </div>
         </div>
         <div class="col pt-4">
@@ -44,6 +45,7 @@ import { BInputGroup, BFormInput, BAlert } from 'bootstrap-vue'
 import TheHeader from './components/TheHeader'
 import TheFooter from './components/TheFooter'
 import TheNumpad from './components/TheNumpad'
+import TheCashInfo from './components/TheCashInfo'
 
 import cashOut from './utils/cashout'
 
@@ -54,6 +56,7 @@ export default {
     BInputGroup,
     BFormInput,
     TheNumpad,
+    TheCashInfo,
     BAlert,
     TheFooter
   },

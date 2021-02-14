@@ -4,6 +4,7 @@ export default {
       let sum = parseInt(this.sum)
       const cash = {}
       let additionalMessage
+      let report = ''
 
       if (isNaN(sum)) {
         this.log.unshift({
@@ -61,16 +62,20 @@ export default {
         return
       }
 
-      for (const denom in cash) { this.cash[denom] -= cash[denom] }
+      for (const denom in cash) {
+        this.cash[denom] -= cash[denom]
+        if (cash[denom] !== 0) report += `<br>Номинал ${denom} ${cash[denom]}шт.`
+      }
 
       sum = this.sum
       additionalMessage = this.total !== 0
-        ? ', можно повторить операцию'
-        : '. Это всё, больше банкомат выдать денег не сможет'
+        ? '<br> Можно повторить операцию'
+        : '<br> Это всё, больше банкомат выдать денег не сможет'
 
       this.log.unshift({
         type: 'success',
-        text: `Вы успешно сняли <strong>${sum}&#8372;</strong>${additionalMessage}`
+        text:
+        `Вы успешно сняли <strong>${sum}&#8372;</strong>${report}${additionalMessage}`
       })
 
       this.sum = '0'
